@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('enc_pass');
-            $table->string('user_type');
+            $table->string('user_type')->nullable();
             $table->string('profile_image')->nullable();
             $table->string('phone')->nullable();
             $table->integer('team_leader')->nullable();
@@ -29,29 +29,6 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-
-        
-    $dummy_data = [
-            
-        [
-            "name"=> "aman",
-            "email"=>'aman@gmail.com',
-            "password"=>Hash::make(123456789),
-            "enc_pass"=>123456789,
-            "created_at"=>now(),
-            "updated_at"=>now()
-        ],
-        [
-            "name"=> "neha",
-            "email"=>"neha@gmail.com",
-            "password"=>Hash::make(123456789),
-            "enc_pass"=>123456789,
-            "created_at"=>now(),
-            "updated_at"=>now()
-        ],
-    ];
-    DB::table('users')->insert($dummy_data);
     }
 
 
