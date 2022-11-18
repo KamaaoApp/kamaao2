@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AppMudules;
+use App\Models\AppModules;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $modules =  AppMudules::select('title')->get();
+        $modules =  AppModules::select('title')->get();
         foreach($modules as $module)
         {
             Permission::create(

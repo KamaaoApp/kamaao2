@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use App\Http\Requests\StoreJobCategoryRequest;
 use App\Http\Requests\UpdateJobCategoryRequest;
@@ -15,19 +16,9 @@ class JobCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return JobCategory::all();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +27,14 @@ class JobCategoryController extends Controller
      */
     public function store(StoreJobCategoryRequest $request)
     {
-        //
+        $validatedData      =   $request->validated();
+        $newJobCategory     =   JobCategory::create($validatedData);
+        return response()->json(
+            [
+                'status'=>200,
+                'message'=>'Company Details Inserted Successfully',
+                'data'  => $newJobCategory->id,
+            ]);
     }
 
     /**
@@ -47,20 +45,9 @@ class JobCategoryController extends Controller
      */
     public function show(JobCategory $jobCategory)
     {
-        //
+        return response()->json(['status'=>200,'data'=>$jobCategory]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\JobCategory  $jobCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(JobCategory $jobCategory)
-    {
-        //
-    }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -70,7 +57,12 @@ class JobCategoryController extends Controller
      */
     public function update(UpdateJobCategoryRequest $request, JobCategory $jobCategory)
     {
-        //
+        $validatedData      =   $request->validated();
+        $jobCategory->update($validatedData);
+        return response()->json([
+            'status'=>200,
+            'message'=>'Job Category Details Updated'
+        ]);
     }
 
     /**
@@ -81,6 +73,13 @@ class JobCategoryController extends Controller
      */
     public function destroy(JobCategory $jobCategory)
     {
-        //
+        if($jobCategory->delete())
+        {
+            return response()->json(['status'=>200,'message'=>'Job Category Details  Deleted']);
+        }
+        else
+        {
+            return response()->json(['status'=>400,'message'=>'Something Went Wrong'],400);
+        }
     }
 }

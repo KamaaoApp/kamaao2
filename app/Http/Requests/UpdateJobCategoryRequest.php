@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateJobCategoryRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,9 +15,13 @@ class UpdateJobCategoryRequest extends FormRequest
      */
     public function authorize()
     {
+        $user = auth('sanctum')->user();
+        if($user)
+        {
+            return auth('sanctum')->user()->can('Company-edit');
+        }
         return false;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +30,7 @@ class UpdateJobCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            'category'=>'required|min:3|unique:companies,company_legal_name,'.$this->route('jobCategory')->id,
+                ];
     }
 }

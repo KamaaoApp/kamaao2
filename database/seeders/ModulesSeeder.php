@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AppMudules;
-use App\Models\Modules;
+use App\Models\AppModules;
 use Illuminate\Database\Seeder;
 
 class ModulesSeeder extends Seeder
@@ -35,7 +34,7 @@ class ModulesSeeder extends Seeder
       
         foreach ($modules as $module)
         {
-            AppMudules::create(['title' =>$module]);
+            AppModules::create(['title' =>$module]);
         }
     }
 }
