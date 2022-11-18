@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AppMudules extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+    ];
     
 }
