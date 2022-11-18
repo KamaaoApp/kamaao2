@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\web\AppModuleController;
 use App\Http\Controllers\Api\Web\AppMudules;
 use App\Http\Controllers\Api\Web\CompanyController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +47,6 @@ Route::middleware(['auth:sanctum'])->group(function (){
 Route::post('/logout',[AuthController::class, 'logout']);
 
 });
+
+Route::get('pincode/{id}', [PincodeController::class, 'show']);
+Route::get('pincode/fetch', [PincodeController::class, 'fetch']);
