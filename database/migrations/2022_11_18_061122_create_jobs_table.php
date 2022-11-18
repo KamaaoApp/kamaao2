@@ -25,7 +25,6 @@ class CreateJobsTable extends Migration
             $table->string('min_salary');
             $table->string('max_salary');
             $table->string('area');
-            
             $table->string('city');
             $table->bigInteger('city_id')->unsigned()->index();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
