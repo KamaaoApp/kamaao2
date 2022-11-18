@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Web;
 
-use App\Models\Job;
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
+use App\Models\JobCategory;
+use App\Http\Requests\StoreJobCategoryRequest;
+use App\Http\Requests\UpdateJobCategoryRequest;
 
-class JobController extends Controller
+class JobCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreJobRequest  $request
+     * @param  \App\Http\Requests\StoreJobCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreJobRequest $request)
+    public function store(StoreJobCategoryRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\JobCategory  $jobCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $job)
+    public function show(JobCategory $jobCategory)
     {
         //
     }
@@ -53,10 +53,10 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\JobCategory  $jobCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Job $job)
+    public function edit(JobCategory $jobCategory)
     {
         //
     }
@@ -64,11 +64,11 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateJobRequest  $request
-     * @param  \App\Models\Job  $job
+     * @param  \App\Http\Requests\UpdateJobCategoryRequest  $request
+     * @param  \App\Models\JobCategory  $jobCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(UpdateJobCategoryRequest $request, JobCategory $jobCategory)
     {
         //
     }
@@ -76,10 +76,10 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\JobCategory  $jobCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Job $job)
+    public function destroy(JobCategory $jobCategory)
     {
         //
     }
