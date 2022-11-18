@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\web\AppModuleController;
 use App\Http\Controllers\Api\Web\AppMudules;
 use App\Http\Controllers\Api\Web\CompanyController;
+use App\Http\Controllers\Api\Web\JobCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
@@ -47,6 +48,14 @@ Route::middleware(['auth:sanctum'])->group(function (){
 Route::post('/logout',[AuthController::class, 'logout']);
 
 });
+
+
+Route::get('/job/category',[JobCategoryController::class, 'index']);
+Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show']);
+Route::post('/job/category',[JobCategoryController::class, 'store']);
+Route::post('/job/category/{jobCategory}',[JobCategoryController::class, 'update']);
+Route::delete('/job/category/{jobCategory}',[JobCategoryController::class, 'destroy']);
+
 
 Route::get('pincode/{id}', [PincodeController::class, 'show']);
 Route::get('pincode/fetch', [PincodeController::class, 'fetch']);

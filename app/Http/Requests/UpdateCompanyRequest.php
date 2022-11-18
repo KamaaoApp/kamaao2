@@ -36,8 +36,7 @@ class UpdateCompanyRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        
+    {        
         return [
             'company_legal_name'=>'required|min:3|unique:companies,company_legal_name,'.$this->route('company')->id,
             'company_popular_name'=>'required|min:3',
