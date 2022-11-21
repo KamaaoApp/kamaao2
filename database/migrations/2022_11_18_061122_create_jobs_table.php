@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('job_type');
             $table->string('job_category');
             $table->integer('is_expired')->default(0)->comment("0 is NO, 1 YES");
-            $table->string('last_date');
+            $table->date('last_date');
             $table->string('total_openings');
             $table->string('min_salary');
             $table->string('max_salary');
@@ -41,13 +41,16 @@ class CreateJobsTable extends Migration
             
             
             $table->integer('status')->default(0);
-            $table->string('call_action')->nullable();
-            $table->string('call_action2')->nullable();
+            $table->string('cta1')->nullable();
+            $table->string('cta1_text')->nullable();
+            $table->string('cta2')->nullable();
+            $table->string('cta2_text')->nullable();
+
             $table->string('min_education');
             $table->integer('experience_required')->comment("in months, 1 year 2 month will be 14 months");
-            $table->integer('skills_required');
+            $table->string('skills_required');
             
-            $table->integer('documents_required');
+            $table->string('documents_required');
             $table->string('additional_requirement')->nullable();
             $table->integer('is_enabled')->default(1)->comment("0 is disabled, 1 is active");
             $table->integer('like_count')->default(0);

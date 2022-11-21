@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class city extends Model
 {
     use HasFactory;
+
+    public function job(Type $var = null)
+    {
+        return $this->hasMany(Job::class);
+    }
 }
