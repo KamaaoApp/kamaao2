@@ -15,7 +15,7 @@ class Job extends Model
                             'cta1_text','cta2','cta2_text','min_education','experience_required',
                             'skills_required','documents_required','additional_requirement', 'area' ];
 
-    protected $with = ['company', 'city', 'skills'];
+    protected $with = ['company', 'city'];
 
     public function company()
     {
@@ -24,10 +24,32 @@ class Job extends Model
 
     public function city()
     {
+
         return $this->hasOne(city::class, 'id', 'city_id')->select(['id', 'city', 'state_id']);
     }
     
+    protected function skills($skills)
+    {
+        $arr  = explode(',',$skills);
+        $getSkill = [];
+        foreach($arr as $skill)
+        {
+            $getSkill[]= skills::find($skill);
+        }
+        return $getSkill;
+    }
     
+    public function getSkillsRequiredAttribute($value='')
+    {
+        $arr  = explode(',',$value);
+        // $getSkill = [];
+        // dd($arr);
+        foreach($arr as $skill)
+        {
+            $getSkill[] = skills::where('id', $skill)->select('id','skill')->get();
+        }
+        return $getSkill;
+    }
 
 
 }

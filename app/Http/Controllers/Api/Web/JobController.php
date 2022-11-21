@@ -42,9 +42,7 @@ class JobController extends Controller
                 'message'=>'Company Details Inserted Successfully',
                 'data'  => $NewCompany->id,
             ]);
-            // echo date('Y-m-d');
-        
-        // dd(config('myglobal.job_type.part-time'));
+           
 
     }
 
@@ -56,9 +54,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        
         return response()->json(['status'=>200,'data'=>$job]);
-
+        return($job->skills_required);
+      
     }
 
     /**
