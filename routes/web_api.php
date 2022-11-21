@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\web\AppModuleController;
 use App\Http\Controllers\Api\Web\AppMudules;
 use App\Http\Controllers\Api\Web\CompanyController;
 use App\Http\Controllers\Api\Web\JobCategoryController;
+use App\Http\Controllers\api\web\SkillsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
@@ -55,6 +56,13 @@ Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show'])
 Route::post('/job/category',[JobCategoryController::class, 'store']);
 Route::post('/job/category/{jobCategory}',[JobCategoryController::class, 'update']);
 Route::delete('/job/category/{jobCategory}',[JobCategoryController::class, 'destroy']);
+
+
+Route::get('/skill',[SkillsController::class, 'index']);
+Route::get('/skill/{skills}',[SkillsController::class, 'show']);
+Route::post('/skill',[SkillsController::class, 'store']);
+Route::post('/skill/{skills}',[SkillsController::class, 'update']);
+Route::delete('/skill/{skills}',[SkillsController::class, 'destroy']);
 
 
 Route::get('pincode/{id}', [PincodeController::class, 'show']);

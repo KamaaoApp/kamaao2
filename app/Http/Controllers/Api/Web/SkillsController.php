@@ -15,7 +15,7 @@ class SkillsController extends Controller
      */
     public function index()
     {
-        //
+        return skills::all();
     }
 
     /**
@@ -26,7 +26,7 @@ class SkillsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
