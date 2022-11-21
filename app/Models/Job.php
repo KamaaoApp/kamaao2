@@ -42,13 +42,13 @@ class Job extends Model
     public function getSkillsRequiredAttribute($value='')
     {
         $arr  = explode(',',$value);
-        // $getSkill = [];
-        // dd($arr);
-        foreach($arr as $skill)
-        {
-            $getSkill[] = skills::where('id', $skill)->select('id','skill')->get();
-        }
-        return $getSkill;
+        return  skills::whereIn('id', $arr)->select('id','skill')->get();
+    }
+
+    public function getDocumentsRequiredAttribute($value='')
+    {
+        $arr  = explode(',',$value);
+        return DocumentType::whereIn('id',$arr)->select('id','document_title')->get();
     }
 
 
