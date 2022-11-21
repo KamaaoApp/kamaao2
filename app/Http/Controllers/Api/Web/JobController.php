@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Api\Web;
 
-
+use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 
 class JobController extends Controller
 {
+    const job_type = ['part-time'=> '1','full-time'=> '2','fresher'=> '3' ,'contract'=> '4','temporary'=> '5'];
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        return Job::all();
     }
 
     
@@ -28,7 +32,20 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        $validatedData      =   $request->validated();
+        // die($validatedData['total_openings']);
+        $validatedData      =   array_merge($validatedData, ['opening_left' => $validatedData['total_openings']]);
+        $NewCompany         =   Job::create($validatedData);
+        return response()->json(
+            [
+                'status'=>200,
+                'message'=>'Company Details Inserted Successfully',
+                'data'  => $NewCompany->id,
+            ]);
+            // echo date('Y-m-d');
+        
+        // dd(config('myglobal.job_type.part-time'));
+
     }
 
     /**
@@ -39,7 +56,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        
+        return response()->json(['status'=>200,'data'=>$job]);
+
     }
 
     /**

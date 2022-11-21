@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\web\AppModuleController;
 use App\Http\Controllers\Api\Web\AppMudules;
 use App\Http\Controllers\Api\Web\CompanyController;
 use App\Http\Controllers\Api\Web\JobCategoryController;
+use App\Http\Controllers\Api\Web\JobController;
 use App\Http\Controllers\api\web\SkillsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
@@ -50,7 +51,7 @@ Route::post('/logout',[AuthController::class, 'logout']);
 
 });
 
-
+/*****JOB CATEGORY */
 Route::get('/job/category',[JobCategoryController::class, 'index']);
 Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show']);
 Route::post('/job/category',[JobCategoryController::class, 'store']);
@@ -67,3 +68,13 @@ Route::delete('/skill/{skills}',[SkillsController::class, 'destroy']);
 
 Route::get('pincode/{id}', [PincodeController::class, 'show']);
 Route::get('pincode/fetch', [PincodeController::class, 'fetch']);
+
+
+/******JOBS ****/
+
+Route::get('/jobs',[JobController::class, 'index']);
+Route::get('/jobs/{job}',[JobController::class, 'show']);
+Route::post('/jobs',[JobController::class, 'store']);
+Route::post('/jobs/{}',[JobController::class, 'update']);
+Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
+
