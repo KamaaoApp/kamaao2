@@ -2,27 +2,23 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreCompanyRequest extends FormRequest
+class StoreDocumentTypeRequest extends FormRequest
 {
 
-    /**
-        * Indicates if the validator should stop on the first rule failure.
-        *
-        * @var bool
-    */
     protected $stopOnFirstFailure = true;
-    
+
+
     /**
-        * Determine if the user is authorized to make this request.
-        *
-        * @return bool
-    */
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
     public function authorize()
-    {
+    { 
         $user = auth('sanctum')->user();
         if($user)
         {
@@ -32,7 +28,6 @@ class StoreCompanyRequest extends FormRequest
         return false;
     }
 
-    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -41,14 +36,11 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_legal_name'=>'bail|required|unique:companies,company_legal_name|min:3',
-            'company_popular_name'=>'required',
-            'company_url'=>'required|url',
-            'company_logo'=>'required|mimes:jpeg,jpg,png',
-            'about_company'=>'required',
+            'document_title'=>'required|string',
         ];
     }
    
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

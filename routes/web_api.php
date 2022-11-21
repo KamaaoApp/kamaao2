@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\web\AppModuleController;
-use App\Http\Controllers\Api\Web\AppMudules;
 use App\Http\Controllers\Api\Web\CompanyController;
+use App\Http\Controllers\Api\web\DocumentTypeController;
 use App\Http\Controllers\Api\Web\JobCategoryController;
 use App\Http\Controllers\Api\Web\JobController;
 use App\Http\Controllers\api\web\SkillsController;
@@ -77,4 +77,12 @@ Route::get('/jobs/{job}',[JobController::class, 'show']);
 Route::post('/jobs',[JobController::class, 'store']);
 Route::post('/jobs/{}',[JobController::class, 'update']);
 Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
+
+/*** DOCUMENT TYPE */
+
+Route::get('/document-type',[DocumentTypeController::class, 'index']);
+Route::get('/document-type/{documentType}',[DocumentTypeController::class, 'show']);
+Route::post('/document-type',[DocumentTypeController::class, 'store']);
+Route::post('/document-type/{documentType}',[DocumentTypeController::class, 'update']);
+Route::delete('/document-type/{documentType}',[DocumentTypeController::class, 'destroy']);
 

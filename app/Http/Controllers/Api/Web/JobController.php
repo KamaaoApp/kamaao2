@@ -54,9 +54,7 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return response()->json(['status'=>200,'data'=>$job]);
-        return($job->skills_required);
-      
+        return response()->json(['status'=>200,'data'=>$job]);      
     }
 
     /**

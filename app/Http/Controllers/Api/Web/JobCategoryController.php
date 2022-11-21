@@ -73,13 +73,7 @@ class JobCategoryController extends Controller
      */
     public function destroy(JobCategory $jobCategory)
     {
-        if($jobCategory->delete())
-        {
-            return response()->json(['status'=>200,'message'=>'Job Category Details  Deleted']);
-        }
-        else
-        {
-            return response()->json(['status'=>400,'message'=>'Something Went Wrong'],400);
-        }
+        $jobCategory->delete();
+        return response()->json(['status'=>200,'message'=>'Job Category Details  Deleted']);
     }
 }
