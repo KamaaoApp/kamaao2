@@ -57,17 +57,7 @@ class JobController extends Controller
         return response()->json(['status'=>200,'data'=>$job]);      
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Job $job)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -77,7 +67,12 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, Job $job)
     {
-        //
+        $validatedData      =   $request->validated();
+        $job->update($validatedData);
+        return response()->json([
+            'status'=>200,
+            'message'=>'Document Type Updated'
+        ]);
     }
 
     /**

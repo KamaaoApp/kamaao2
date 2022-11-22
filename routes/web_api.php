@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Web\CompanyController;
 use App\Http\Controllers\Api\web\DocumentTypeController;
 use App\Http\Controllers\Api\Web\JobCategoryController;
 use App\Http\Controllers\Api\Web\JobController;
+use App\Http\Controllers\api\web\ProjectController;
 use App\Http\Controllers\api\web\SkillsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
@@ -77,6 +78,15 @@ Route::get('/jobs/{job}',[JobController::class, 'show']);
 Route::post('/jobs',[JobController::class, 'store']);
 Route::post('/jobs/{}',[JobController::class, 'update']);
 Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
+
+
+/******PROJECT ****/
+
+Route::get('/projects',[ProjectController::class, 'index']);
+Route::get('/project/{project}',[ProjectController::class, 'show']);
+Route::post('/project',[ProjectController::class, 'store']);
+Route::post('/project/{project}',[ProjectController::class, 'update']);
+Route::delete('/project/{project}',[ProjectController::class, 'destroy']);
 
 /*** DOCUMENT TYPE */
 
