@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Web\JobCategoryController;
 use App\Http\Controllers\Api\Web\JobController;
 use App\Http\Controllers\api\web\ProjectController;
 use App\Http\Controllers\api\web\SkillsController;
+use App\Http\Controllers\api\web\UserSupportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
@@ -95,4 +96,14 @@ Route::get('/document-type/{documentType}',[DocumentTypeController::class, 'show
 Route::post('/document-type',[DocumentTypeController::class, 'store']);
 Route::post('/document-type/{documentType}',[DocumentTypeController::class, 'update']);
 Route::delete('/document-type/{documentType}',[DocumentTypeController::class, 'destroy']);
+
+
+
+/*** USER SUPPORT */
+
+Route::get('/support',[UserSupportController::class, 'index']);
+Route::get('/support/{userSupport}',[UserSupportController::class, 'show']);
+Route::post('/support',[UserSupportController::class, 'store']);
+Route::post('/support/{userSupport}',[UserSupportController::class, 'update']);
+Route::delete('/support/{userSupport}',[UserSupportController::class, 'destroy']);
 

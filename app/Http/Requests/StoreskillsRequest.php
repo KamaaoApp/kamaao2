@@ -25,17 +25,14 @@ class StoreskillsRequest extends FormRequest
         return false;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    
     public function rules()
     {
         return [
             'skill'=>'required|unique:skills,skill|min:3',
         ];
     }
+    
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

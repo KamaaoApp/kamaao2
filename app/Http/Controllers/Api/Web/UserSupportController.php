@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserSupport;
 use App\Http\Requests\StoreUserSupportRequest;
 use App\Http\Requests\UpdateUserSupportRequest;
+use App\Http\Traits\ImageUpload;
 
 class UserSupportController extends Controller
 {
@@ -46,7 +47,7 @@ class UserSupportController extends Controller
         return response()->json(
             [
                 'status'=>200,
-                'message'=>'Company Details Inserted Successfully',
+                'message'=>'Thank you for reaching out',
                 'data'  => ['id'=>$newSupportTicket->id],
             ]);
     }
@@ -59,7 +60,7 @@ class UserSupportController extends Controller
      */
     public function show(UserSupport $userSupport)
     {
-        //
+        return response()->json(['status'=>200,'data'=>$userSupport]);
     }
 
     /**
@@ -71,7 +72,7 @@ class UserSupportController extends Controller
      */
     public function update(UpdateUserSupportRequest $request, UserSupport $userSupport)
     {
-        //
+        // NOT ALLOWED FOR NOW   
     }
 
     /**
@@ -82,6 +83,7 @@ class UserSupportController extends Controller
      */
     public function destroy(UserSupport $userSupport)
     {
-        //
+        $userSupport->delete();
+        return response()->json(['status'=>200,'message'=>'Support Ticket Deleted']);
     }
 }

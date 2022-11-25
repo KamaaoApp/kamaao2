@@ -9,4 +9,6 @@ class UserSupport extends Model
 {
     use HasFactory;
     protected $table = 'support_tickets';
+    protected $fillable = ['description', 'user_id'];
+
 }
