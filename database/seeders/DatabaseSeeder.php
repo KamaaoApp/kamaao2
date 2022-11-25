@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ModulesSeeder::class,
             PermissionSeeder::class,
+            DocumentTypeSeeder::class,
+            SkillsSeeder::class,
+            StateSeeder::class,
+            DistrictSeeder::class,
+            CitySeeder::class,
         ]);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\AppModules;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ModulesSeeder extends Seeder
 {
@@ -16,7 +16,8 @@ class ModulesSeeder extends Seeder
     {
         
         $modules = [
-            'Role',
+            ['id'=>1, 'title'=>'Role'],
+            ['id'=>2, 'skill'=>'Company'],
             // 'Company',
             // 'Job',
             // 'Job-Cats',
@@ -32,9 +33,6 @@ class ModulesSeeder extends Seeder
             // 'Support',
          ];
       
-        foreach ($modules as $module)
-        {
-            AppModules::create(['title' =>$module]);
-        }
+        DB::table('app_modules')->insert($modules);
     }
 }

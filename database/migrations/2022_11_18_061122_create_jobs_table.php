@@ -39,8 +39,6 @@ class CreateJobsTable extends Migration
             
             $table->bigInteger('company_id')->unsigned()->index();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            
-            
             $table->integer('status')->default(0);
             $table->string('cta1')->nullable();
             $table->string('cta1_text')->nullable();

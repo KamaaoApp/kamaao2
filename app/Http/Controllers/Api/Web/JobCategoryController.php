@@ -32,7 +32,7 @@ class JobCategoryController extends Controller
         return response()->json(
             [
                 'status'=>200,
-                'message'=>'Company Details Inserted Successfully',
+                'message'=>'Category Details Inserted Successfully',
                 'data'  => $newJobCategory->id,
             ]);
     }
@@ -61,7 +61,7 @@ class JobCategoryController extends Controller
         $jobCategory->update($validatedData);
         return response()->json([
             'status'=>200,
-            'message'=>'Job Category Details Updated'
+            'message'=>'Category Details Updated'
         ]);
     }
 

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\DocumentType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DocumentTypeSeeder extends Seeder
 {
@@ -15,16 +15,12 @@ class DocumentTypeSeeder extends Seeder
     public function run()
     {
         $documents = [
-            'PAN CARD',
-            'AADHAR CARD',
-            'VOTER CARD',
-            'DRIVING LICENSE(DL)',
-            'VEHICLE REGISTRATION CERTIFICATE(RC)'
-         ];
-      
-        foreach ($documents as $document)
-        {
-            DocumentType::create(['document_title' =>$document]);
-        }
+            ['id'=>1, 'document_title'=> 'PAN CARD'],
+            ['id'=>2, 'document_title'=> 'AADHAR CARD'],
+            ['id'=>3, 'document_title'=> 'VOTER CARD'],
+            ['id'=>4, 'document_title'=> 'DRIVING LICENSE(DL)'],
+            ['id'=>5, 'document_title'=> 'VEHICLE REGISTRATION CERTIFICATE(RC)']
+        ];
+        DB::table('document_types')->insert($documents);
     }
 }

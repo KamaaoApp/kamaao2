@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Web\JobController;
 use App\Http\Controllers\api\web\ProjectController;
 use App\Http\Controllers\api\web\SkillsController;
 use App\Http\Controllers\api\web\UserSupportController;
+use App\Http\Controllers\api\web\TaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
@@ -107,3 +108,4 @@ Route::post('/support',[UserSupportController::class, 'store']);
 Route::post('/support/{userSupport}',[UserSupportController::class, 'update']);
 Route::delete('/support/{userSupport}',[UserSupportController::class, 'destroy']);
 
+Route::get('/tasks',[TaskController::class, 'index']);
