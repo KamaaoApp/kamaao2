@@ -63,7 +63,7 @@ class CompanyController extends Controller
             [
                 'status'=>200,
                 'message'=>'Company Details Inserted Successfully',
-                'data'  => $NewCompany->id,
+                'data'  => ['id'=>$NewCompany->id],
             ]);
     }
 

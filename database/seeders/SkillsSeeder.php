@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\skills;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SkillsSeeder extends Seeder
 {
@@ -14,28 +14,13 @@ class SkillsSeeder extends Seeder
      */
     public function run()
     {
-        
-        
         $skills = [
-            'skill 1',
-            'skill 2',
-            'skill 3',
-            // 'Job-Cats',
-            // 'Application',
-            // 'Employees',
-            // 'Project',
-            // 'Task',
-            // 'Product',
-            // 'Product-category',
-            // 'Product-sub-category',
-            // 'Hot-Offer',
-            // 'University',
-            // 'Support',
-         ];
+            ['id'=>1, 'skill'=>'skill 1'],
+            ['id'=>2, 'skill'=>'skill 2'],
+            ['id'=>3, 'skill'=>'skill 3'],
+            ['id'=>4, 'skill'=>'skill 4'],
+        ];
       
-        foreach ($skills as $skill)
-        {
-            skills::create(['skill' =>$skill]);
-        }
+        DB::table('skills')->insert($skills);
     }
 }

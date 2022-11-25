@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Web\JobCategoryController;
 use App\Http\Controllers\Api\Web\JobController;
 use App\Http\Controllers\api\web\ProjectController;
 use App\Http\Controllers\api\web\SkillsController;
+use App\Http\Controllers\api\web\TaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PincodeController;
 use Illuminate\Http\Request;
@@ -96,3 +97,6 @@ Route::post('/document-type',[DocumentTypeController::class, 'store']);
 Route::post('/document-type/{documentType}',[DocumentTypeController::class, 'update']);
 Route::delete('/document-type/{documentType}',[DocumentTypeController::class, 'destroy']);
 
+
+
+Route::get('/tasks',[TaskController::class, 'index']);

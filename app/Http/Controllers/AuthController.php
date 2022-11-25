@@ -51,7 +51,8 @@ class AuthController extends Controller
             return response()->json([
                 'status'=>401,
                 'message'=>'Invalid Credentials',
-                ]);
+                ],401);
+                
         }
     }
 
