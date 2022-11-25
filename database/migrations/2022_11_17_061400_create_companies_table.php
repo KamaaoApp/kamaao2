@@ -15,11 +15,11 @@ class CreateCompaniesTable extends Migration
     { 
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_legal_name');
-            $table->string('company_popular_name');
-            $table->string('company_url');
-            $table->string('company_logo');
-            $table->string('about_company', 1000);
+            $table->string('legal_name');
+            $table->string('popular_name');
+            $table->string('url');
+            $table->string('logo');
+            $table->string('about', 1000);
             $table->integer('is_enabled')->default(0)->comment("0 is disabled user, 1 is active");
             $table->softDeletes();
             $table->timestamps();
