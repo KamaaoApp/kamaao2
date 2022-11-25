@@ -21,7 +21,7 @@ class CreateUserSupportsTable extends Migration
             $table->integer('is_open')->default(1)->comment("0 is Clesed, 1 is open");
             $table->string('description', 500)->nullable();
             $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('app_user');
+            $table->foreign('user_id')->references('id')->on('app_users');
             $table->bigInteger('reviewed_by')->unsigned()->index()->nullable();
             $table->foreign('reviewed_by')->references('id')->on('users');
             $table->dateTime('closing_date')->nullable();
