@@ -11,11 +11,11 @@ class Company extends Model
     use SoftDeletes;
     use HasFactory;
     protected $fillable = [
-        'company_legal_name',
-        'company_popular_name',
-        'company_url',
-        'company_logo',
-        'about_company',
+        'legal_name',
+        'popular_name',
+        'url',
+        'logo',
+        'about',
         'is_enabled',
     ];
 }
