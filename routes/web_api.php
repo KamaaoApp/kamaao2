@@ -39,6 +39,16 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('/company', [CompanyController::class, 'store']);
     Route::post('/company/{company}', [CompanyController::class, 'update']);
     Route::delete('/company/{company}', [CompanyController::class, 'destroy']);
+
+    
+    /*****JOB CATEGORY */
+    Route::get('/job/category',[JobCategoryController::class, 'index']);
+    Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show']);
+    Route::post('/job/category',[JobCategoryController::class, 'store']);
+    Route::post('/job/category/{jobCategory}',[JobCategoryController::class, 'update']);
+    Route::delete('/job/category/{jobCategory}',[JobCategoryController::class, 'destroy']);
+
+
 });
 
 /**** AppModules ROUTE STARTS *****/
@@ -47,18 +57,6 @@ Route::get('/app_modules/{appMudules}', [AppModuleController::class, 'show']);
 Route::post('/app_modules', [AppModuleController::class, 'store']);
 Route::post('/app_modules/{appMudules}', fn()=> abort(403, 'Action not allowed'));
 Route::delete('/app_modules/{appMudules}', [AppModuleController::class, 'destroy']);
-
-/****COMPANY ROUTE STARTS *****/
-
-
-
-
-/*****JOB CATEGORY */
-Route::get('/job/category',[JobCategoryController::class, 'index']);
-Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show']);
-Route::post('/job/category',[JobCategoryController::class, 'store']);
-Route::post('/job/category/{jobCategory}',[JobCategoryController::class, 'update']);
-Route::delete('/job/category/{jobCategory}',[JobCategoryController::class, 'destroy']);
 
 
 Route::get('/skill',[SkillsController::class, 'index']);

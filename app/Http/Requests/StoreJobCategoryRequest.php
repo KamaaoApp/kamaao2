@@ -13,13 +13,7 @@ class StoreJobCategoryRequest extends FormRequest
  
     public function authorize()
     {
-        $user = auth('sanctum')->user();
-        if($user)
-        {
-            auth('sanctum')->user()->can('Company-create');
-            return true;
-        }
-        return false;
+        return auth('sanctum')->user()->can('JobCategory-create');        
     }
 
 
@@ -38,7 +32,8 @@ class StoreJobCategoryRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'status' => 422,
+            'status' => 'SUCCESS',
+            'statu_code' => 422,
             'meaasge' => "The given data was invalid to process with",
             // 'errors' => ['message'=> 'Validation Error'],
             'errors' => $validator->errors()
