@@ -17,22 +17,17 @@ class UpdateJobCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        $user = auth('sanctum')->user();
-        if($user)
-        {
-            return auth('sanctum')->user()->can('Company-edit');
-        }
-        return false;
+        return auth('sanctum')->user()->can('JobCategory-update');
     }
     /**
      * Get the validation rules that apply to the request.
-     *
+     *  
      * @return array
      */
     public function rules()
     {
-        return [
-            'category'=>'required|min:3|unique:companies,company_legal_name,'.$this->route('jobCategory')->id,
+        return  [
+                    'category'=>'required|min:3|unique:job_categories,category,'.$this->route('jobCategory')->id,
                 ];
     }
 

@@ -16,7 +16,12 @@ class JobCategoryController extends Controller
      */
     public function index()
     {
-        return JobCategory::all();
+        return response()->json(
+            [
+                'status'=>'SUCCESS',
+                'status_code'=>200,
+                'data'  => JobCategory::all(),
+            ]);
     }
  
     /**
@@ -31,8 +36,9 @@ class JobCategoryController extends Controller
         $newJobCategory     =   JobCategory::create($validatedData);
         return response()->json(
             [
-                'status'=>200,
-                'message'=>'Company Details Inserted Successfully',
+                'status'=>'SUCCESS',
+                'status_code'=>200,
+                'message'=>'New Job Category Created',
                 'data'  => $newJobCategory->id,
             ]);
     }
@@ -45,7 +51,7 @@ class JobCategoryController extends Controller
      */
     public function show(JobCategory $jobCategory)
     {
-        return response()->json(['status'=>200,'data'=>$jobCategory]);
+        return response()->json(['status'=>'SUCCESS','status_code'=>200,'data'=>$jobCategory]);
     }
  
     /**
@@ -60,7 +66,8 @@ class JobCategoryController extends Controller
         $validatedData      =   $request->validated();
         $jobCategory->update($validatedData);
         return response()->json([
-            'status'=>200,
+            'status'=>'SUCCESS',
+            'status_code'=>200,
             'message'=>'Job Category Details Updated'
         ]);
     }
@@ -75,11 +82,11 @@ class JobCategoryController extends Controller
     {
         if($jobCategory->delete())
         {
-            return response()->json(['status'=>200,'message'=>'Job Category Details  Deleted']);
+            return response()->json(['status'=>'SUCCESS','status_code'=>200,'message'=>'Job Category Details  Deleted']);
         }
         else
         {
-            return response()->json(['status'=>400,'message'=>'Something Went Wrong'],400);
+            return response()->json(['status'=>'FAILED','status'=>400,'message'=>'Something Went Wrong'],400);
         }
     }
 }
