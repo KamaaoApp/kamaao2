@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
@@ -17,17 +18,18 @@ class AuthController extends Controller
     {
         $validater = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => ['required', Password::defaults()],
             
         ]);
 
         if($validater->fails())
         {
             return response()->json([
-                'status'    =>'422',
-                'message'   =>'Validation Error',
-                'errors'=>$validater->errors(),
-            ],422);
+                'status'        =>  'FAILED',
+                'status_code'   =>  '402',
+                'message'       =>  'INVALID REQUEST',
+                // 'errors'        =>  'check your rea'
+            ],400);
         }
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 

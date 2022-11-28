@@ -38,7 +38,7 @@ class PermissionSeeder extends Seeder
         User::create( [ 
             "name"=> "Gyaanesh Chandra",
             "email"=>'gyaanesh@gmail.com',
-            "password"=>Hash::make(123456789),
+            "password"=>Hash::make('@Gyaanesh1on1'),
             "user_type"=>"Super Admin",
             "enc_pass"=>123456789,
             "created_at"=>now(),
