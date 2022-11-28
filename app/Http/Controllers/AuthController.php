@@ -11,7 +11,8 @@ use Spatie\Permission\Traits\HasRoles;
 class AuthController extends Controller
 {
     use HasRoles, HasApiTokens;
-    public function login(Type $var = null)
+    
+    public function login(Request $request)
     {
         $validater = Validator::make($request->all(), [
             'email' => 'required|email',
