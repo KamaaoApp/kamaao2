@@ -31,8 +31,7 @@ Route::post('/login',[AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/test', function (Request $request){return "WebApi";});
-
-Route::post('/logout',[AuthController::class, 'logout']);
+    Route::post('/logout',[AuthController::class, 'logout']);
 
 });
 
