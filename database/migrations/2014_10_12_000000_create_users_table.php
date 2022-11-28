@@ -29,29 +29,6 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-
-        
-    $dummy_data = [
-            
-        [
-            "name"=> "aman",
-            "email"=>'aman@gmail.com',
-            "password"=>Hash::make(123456789),
-            "enc_pass"=>123456789,
-            "created_at"=>now(),
-            "updated_at"=>now()
-        ],
-        [
-            "name"=> "neha",
-            "email"=>"neha@gmail.com",
-            "password"=>Hash::make(123456789),
-            "enc_pass"=>123456789,
-            "created_at"=>now(),
-            "updated_at"=>now()
-        ],
-    ];
-    DB::table('users')->insert($dummy_data);
     }
 
 
