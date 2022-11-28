@@ -28,11 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login',[AuthController::class, 'login']);
  
 // PROTECTED ROUTES
-
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/test', function (Request $request){return "WebApi";});
     Route::post('/logout',[AuthController::class, 'logout']);
-
 });
 
 /**** AppModules ROUTE STARTS *****/
@@ -52,6 +50,12 @@ Route::delete('/company/{company}', [CompanyController::class, 'destroy']);
 
 /****JOB ROUTE STARTS *****/
 
+Route::middleware(['auth:sanctum'])->group(function (){
+    Route::get('/test', function (Request $request){return "WebApi";});
+
+Route::post('/logout',[AuthController::class, 'logout']);
+
+});
 
 /*****JOB CATEGORY */
 Route::get('/job/category',[JobCategoryController::class, 'index']);
