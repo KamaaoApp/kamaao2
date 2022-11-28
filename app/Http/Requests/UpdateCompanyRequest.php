@@ -39,12 +39,11 @@ class UpdateCompanyRequest extends FormRequest
     {
         
         return [
-            'company_legal_name'=>'required|min:3|unique:companies,company_legal_name,'.$this->route('company')->id,
-            'company_popular_name'=>'required|min:3',
-            'company_popular_name'=>'required',
-            'company_url'=>'required|url',
-            'company_logo'=>'nullable|mimes:jpeg,jpg,png',
-            'about_company'=>'required|nullable',
+            'legal_name'=>['required',' unique:companies','legal_name|min:3',3],
+            'popular_name'=>'required',
+            'url'=>'required|url',
+            'logo'=>'required|mimes:jpeg,jpg,png',
+            'about'=>'required',
         ];
     }
 
@@ -52,11 +51,11 @@ class UpdateCompanyRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'status' => 422,
+            'status' => "FAILED",
+            'status_code' => 422,
             'meaasge' => "The given data was invalid to process with",
             // 'errors' => ['message'=> 'Validation Error'],
             'errors' => $validator->errors()
-
         ], 422));
     }
 }

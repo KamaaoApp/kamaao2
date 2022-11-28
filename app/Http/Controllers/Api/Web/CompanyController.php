@@ -46,22 +46,24 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        $image_path     =   '';
-        if($request->hasfile('company_logo'))
+        $validatedData      =   $request->validated();
+        
+        if($request->hasfile('logo'))
         {
-            $image      = $request->file('company_logo');
+            $image      = $request->file('logo');
             $folder     = public_path('assets/images/company');
             $name       = Str::random(30).'_' . time();
             $filePath   = $folder . $name . '.' . $image->getClientOriginalExtension();
             $this->uploadImage($image, $folder, 'public', $name);
-            $image_path = 'assets/images/company/'. $name . '.' . $image->getClientOriginalExtension();        
+            $image_path = 'assets/images/company/'. $name . '.' . $image->getClientOriginalExtension(); 
+            $validatedData['logo']=$image_path;
         }
-        $validatedData      =   $request->validated();
-        $validatedData      =   array_merge($validatedData, ['is_enabled' => 1,'company_logo'=> $image_path]);
+        
         $NewCompany         =   Company::create($validatedData);
         return response()->json(
             [
-                'status'=>200,
+                'status'=>'SUCCESS',
+                'status_code'=>200,
                 'message'=>'Company Details Inserted Successfully',
                 'data'  => $NewCompany->id,
             ]);

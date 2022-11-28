@@ -26,8 +26,10 @@ class StoreCompanyRequest extends FormRequest
         $user = auth('sanctum')->user();
         if($user)
         {
-            auth('sanctum')->user()->can('Company-create');
-            return true;
+            if(auth('sanctum')->user()->can('Company-create'))
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -41,21 +43,23 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_legal_name'=>'bail|required|unique:companies,company_legal_name|min:3',
-            'company_popular_name'=>'required',
-            'company_url'=>'required|url',
-            'company_logo'=>'required|mimes:jpeg,jpg,png',
-            'about_company'=>'required',
+            'legal_name'=>'required|unique:companies,legal_name|min:3',
+            'popular_name'=>'required',
+            'url'=>'required|url',
+            'logo'=>'required|mimes:jpeg,jpg,png',
+            'about'=>'required',
         ];
     }
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'status' => 422,
+            'status' => "FAILED",
+            'status_code' => 422,
             'meaasge' => "The given data was invalid to process with",
             // 'errors' => ['message'=> 'Validation Error'],
             'errors' => $validator->errors()
-
         ], 422));
     }
+
+
 }
