@@ -15,14 +15,8 @@ class StoreJobRequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    {
-        $user = auth('sanctum')->user();
-        if($user)
-        {
-            auth('sanctum')->user()->can('Company-create');
-            return true;
-        }
-        return false;
+    { 
+        return auth('sanctum')->user()->can('Jobs-create');
     }
 
     /**
@@ -33,30 +27,32 @@ class StoreJobRequest extends FormRequest
     public function rules()
     {
         return [
-            'job_title'=>'required|min:3',
+            'title'=>'required|min:3',
             'sub_title'=>'required|min:3',
-            'job_type'=>'required',
-            'job_category'=>'required',
+            'type'=>'required',
+            'category'=>'required',
             'company_id'=>'required',
             'last_date'=> 'required|date|date_format:Y-m-d|after:today',
             'total_openings'=>'required|integer',
             'min_salary' => 'required|integer',
             'max_salary' => 'required|integer|gt:min_salary',
-            'area' =>'required',
-            'city'  =>'required',
+            'area' =>'required|string',
+            'city'  =>'required|string',
             'city_id'  =>'required|integer',
-            'state'  =>'required',
+            'district'  =>'required|string',
+            'district_id'  =>'required|integer',
+            'state'  =>'required|string',
             'state_id'  =>'required|integer',
             'description_video'=> 'required|url',
             'roles_responsibility'=>'required',
-            'cta1'=>'required',
-            'cta1_text'=>'required',
-            'cta2'=>'required',
-            'cta2_text'=>'required',
+            'cta1'=>'required|url',
+            'cta1_text'=>'required|string',
+            'cta2'=>'required|url',
+            'cta2_text'=>'required|string',
             'min_education'=> 'required',
             'experience_required'=>'required',
             'skills_required'   =>'required',
-            'documents_required'=>'nullable',
+            'documents_required'=>'required',
             'additional_requirement'=>'nullable|string',
         ];
     }
