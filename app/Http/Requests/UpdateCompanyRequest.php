@@ -39,10 +39,10 @@ class UpdateCompanyRequest extends FormRequest
     {
         
         return [
-            'legal_name'=>['required',' unique:companies','legal_name|min:3',3],
+            'legal_name'=>'required|min:3|unique:companies,legal_name,'.$this->route('company')->id,
             'popular_name'=>'required',
             'url'=>'required|url',
-            'logo'=>'required|mimes:jpeg,jpg,png',
+            'logo'=>'nullable|mimes:jpeg,jpg,png',
             'about'=>'required',
         ];
     }

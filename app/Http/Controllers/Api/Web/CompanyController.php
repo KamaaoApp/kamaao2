@@ -90,34 +90,24 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        $Company =  Company::find($company);
-        if($Company)
-        {
+        $validatedData      =   $request->validated();
+        
             $image_path     =   '';
-            if($request->hasfile('company_logo'))
+            if($request->hasfile('logo'))
             {
-                $image      = $request->file('company_logo');
+                $image      = $request->file('logo');
                 $folder     = public_path('assets/images/company');
                 $name       = Str::random(30).'_' . time();
                 $filePath   = $folder . $name . '.' . $image->getClientOriginalExtension();
                 $this->uploadImage($image, $folder, 'public', $name);
-                $image_path = 'assets/images/company/'. $name . '.' . $image->getClientOriginalExtension();        
+                $image_path = 'assets/images/company/'. $name . '.' . $image->getClientOriginalExtension();
+                $validatedData['logo']=$image_path;
             }
-            $validatedData      =   $request->validated();
-            $validatedData      =   array_merge($validatedData, ['is_enabled' => 1,'company_logo'=> $image_path]);
             $company->update(array_filter($validatedData));
             return response()->json([
                 'status'=>200,
                 'message'=>'Company Details updated'
             ]);
-        }
-        else
-        {
-            return response()->json([
-                'status'=>404,
-                'message'=>'Company Id  Not Found'
-            ]);
-        }
     }
 
     /**
@@ -130,11 +120,12 @@ class CompanyController extends Controller
     { 
         if($company->delete())
         {
-            return response()->json(['status'=>200,'message'=>'Company Details  Deleted']);
+            return response()->json(['status'=>200,'message'=>'Company Details Deleted']);
         }
         else
         {
             return response()->json(['status'=>400,'message'=>'Something Went Wrong'],400);
         }
+        
     }
 }
