@@ -34,20 +34,17 @@ Route::post('/app_modules', [AppModuleController::class, 'store']);
 Route::post('/app_modules/{appMudules}', fn()=> abort(403, 'Action not allowed'));
 Route::delete('/app_modules/{appMudules}', [AppModuleController::class, 'destroy']);
 
-/****COMPANY ROUTE STARTS *****/
-
-Route::get('/company', [CompanyController::class, 'index'])->middleware(['auth:sanctum'])->middleware(['role_or_permission:Super Admin|Company-list']);;
-Route::get('/company/{company}', [CompanyController::class, 'show']);
-Route::post('/company', [CompanyController::class, 'store']);
-Route::post('/company/{company}', [CompanyController::class, 'update']);
-Route::delete('/company/{company}', [CompanyController::class, 'destroy']);
-
-/****JOB ROUTE STARTS *****/
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/test', function (Request $request){return "WebApi";});
-
-Route::post('/logout',[AuthController::class, 'logout']);
+    Route::post('/logout',[AuthController::class, 'logout']);
+    
+    // JOBS ROUTE STARTED
+    Route::get('/jobs',[JobController::class, 'index']);
+    Route::get('/jobs/{job}',[JobController::class, 'show']);
+    Route::post('/jobs',[JobController::class, 'store']);
+    Route::post('/jobs/{}',[JobController::class, 'update']);
+    Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
 
 });
 
@@ -69,14 +66,6 @@ Route::delete('/skill/{skills}',[SkillsController::class, 'destroy']);
 Route::get('pincode/{id}', [PincodeController::class, 'show']);
 Route::get('pincode/fetch', [PincodeController::class, 'fetch']);
 
-
-/******JOBS ****/
-
-Route::get('/jobs',[JobController::class, 'index']);
-Route::get('/jobs/{job}',[JobController::class, 'show']);
-Route::post('/jobs',[JobController::class, 'store']);
-Route::post('/jobs/{}',[JobController::class, 'update']);
-Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
 
 /*** DOCUMENT TYPE */
 

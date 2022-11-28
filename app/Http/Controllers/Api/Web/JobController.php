@@ -20,7 +20,12 @@ class JobController extends Controller
      */
     public function index()
     {
-        return Job::all();
+        return response()->json(
+            [
+                'status'=>'SUCCESS',
+                'status_code'=>200,
+                'data'  => Job::all(),
+            ]);
     }
 
     
