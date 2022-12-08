@@ -38,7 +38,6 @@ class JobController extends Controller
     public function store(StoreJobRequest $request)
     {
         $validatedData      =   $request->validated();
-        // die($validatedData['total_openings']);
         $validatedData      =   array_merge($validatedData, ['opening_left' => $validatedData['total_openings']]);
         $NewJob             =   Job::create($validatedData);
         return response()->json(
