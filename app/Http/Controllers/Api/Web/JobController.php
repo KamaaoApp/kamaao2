@@ -20,7 +20,12 @@ class JobController extends Controller
      */
     public function index()
     {
-        return Job::all();
+        return response()->json(
+            [
+                'status'=>'SUCCESS',
+                'status_code'=>200,
+                'data'  => Job::all(),
+            ]);
     }
 
     
@@ -33,56 +38,43 @@ class JobController extends Controller
     public function store(StoreJobRequest $request)
     {
         $validatedData      =   $request->validated();
-        // die($validatedData['total_openings']);
         $validatedData      =   array_merge($validatedData, ['opening_left' => $validatedData['total_openings']]);
-        $NewCompany         =   Job::create($validatedData);
+        $NewJob             =   Job::create($validatedData);
         return response()->json(
             [
-                'status'=>200,
+                'status'=>'SUCCESS',
+                'status_code'=>200,
                 'message'=>'Company Details Inserted Successfully',
-                'data'  => $NewCompany->id,
+                'data'  => ['id'=>$NewJob->id],
             ]);
-           
-
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show(Job $job)
     {
-        return response()->json(['status'=>200,'data'=>$job]);      
+        return response()->json(['status'=>'SUCCESS', 'status_code'=>200,'data'=>$job]);      
     }
 
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateJobRequest  $request
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateJobRequest $request, Job $job)
     {
         $validatedData      =   $request->validated();
         $job->update($validatedData);
         return response()->json([
-            'status'=>200,
+            'status'=>'SUCCESS',
+            'status_code'=>200,
             'message'=>'Document Type Updated'
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
+     
     public function destroy(Job $job)
     {
-        //
+        if($job->delete())
+        {
+            return response()->json([ 'status'=>'SUCCESS','status_code'=>200,'message'=>'Job Details Deleted']);
+        }
+        else
+        {
+            return response()->json([ 'status'=>'FAILED', 'status_code'=>400,'message'=>'Something Went Wrong'],400);
+        }
     }
 }

@@ -25,84 +25,94 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| CONTENTAINS ROUTES 
+|--------------------------------------------------------------------------
+|   LOGIN
+|   
+|   MIDDLEWARE->sanctum
+|               LOGOUT
+|               COMPANY
+|               APP_MODULES
+|               JOBS CATEGORY
+|               JOBS 
+|               SKILLS 
+|
+*/
+
 Route::post('/login',[AuthController::class, 'login']);
  
 // PROTECTED ROUTES
 
-Route::middleware(['auth:sanctum'])->group(function (){
+Route::middleware(['auth:sanctum'])->group(function ()
+{
     Route::get('/test', function (Request $request){return "WebApi";});
     Route::post('/logout',[AuthController::class, 'logout']);
 
-    // COMPANY ROUTES 
+
+    /**** COMPANY  *****/
     Route::get('/company', [CompanyController::class, 'index'])->middleware(['auth:sanctum'])->middleware(['role_or_permission:Super Admin|Company-list']);;
     Route::get('/company/{company}', [CompanyController::class, 'show']);
     Route::post('/company', [CompanyController::class, 'store']);
     Route::post('/company/{company}', [CompanyController::class, 'update']);
     Route::delete('/company/{company}', [CompanyController::class, 'destroy']);
 
-    
-    /*****JOB CATEGORY */
+    /**** AppModules  *****/
+    Route::get('/app_modules', [AppModuleController::class, 'index']);
+    Route::get('/app_modules/{appMudules}', [AppModuleController::class, 'show']);
+    Route::post('/app_modules', [AppModuleController::class, 'store']);
+    Route::post('/app_modules/{appMudules}', fn()=> abort(403, 'Action not allowed'));
+    Route::delete('/app_modules/{appMudules}', [AppModuleController::class, 'destroy']);
+
+    /**** JOBS CATEGORY  *****/
     Route::get('/job/category',[JobCategoryController::class, 'index']);
     Route::get('/job/category/{jobCategory}',[JobCategoryController::class, 'show']);
     Route::post('/job/category',[JobCategoryController::class, 'store']);
     Route::post('/job/category/{jobCategory}',[JobCategoryController::class, 'update']);
     Route::delete('/job/category/{jobCategory}',[JobCategoryController::class, 'destroy']);
 
+    /**** JOBS  *****/
+    Route::get('/jobs',[JobController::class, 'index']);
+    Route::get('/jobs/{job}',[JobController::class, 'show']);
+    Route::post('/jobs',[JobController::class, 'store']);
+    Route::post('/jobs/{}',[JobController::class, 'update']);
+    Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
 
+    /**** SKILLS  *****/
+    Route::get('/skill',[SkillsController::class, 'index']);
+    Route::get('/skill/{skills}',[SkillsController::class, 'show']);
+    Route::post('/skill',[SkillsController::class, 'store']);
+    Route::post('/skill/{skills}',[SkillsController::class, 'update']);
+    Route::delete('/skill/{skills}',[SkillsController::class, 'destroy']);
+    
+
+    /******PROJECT ****/
+    Route::get('/projects',[ProjectController::class, 'index']);
+    Route::get('/project/{project}',[ProjectController::class, 'show']);
+    Route::post('/project',[ProjectController::class, 'store']);
+    Route::post('/project/{project}',[ProjectController::class, 'update']);
+    Route::delete('/project/{project}',[ProjectController::class, 'destroy']);
+    
+    /**** DOCUMENT TYPE ****/
+    Route::get('/document-type',[DocumentTypeController::class, 'index']);
+    Route::get('/document-type/{documentType}',[DocumentTypeController::class, 'show']);
+    Route::post('/document-type',[DocumentTypeController::class, 'store']);
+    Route::post('/document-type/{documentType}',[DocumentTypeController::class, 'update']);
+    Route::delete('/document-type/{documentType}',[DocumentTypeController::class, 'destroy']);
+
+    /**** USER SUPPORT ****/
+    Route::get('/support',[UserSupportController::class, 'index']);
+    Route::get('/support/{userSupport}',[UserSupportController::class, 'show']);
+    Route::post('/support',[UserSupportController::class, 'store']);
+    Route::post('/support/{userSupport}',[UserSupportController::class, 'update']);
+    Route::delete('/support/{userSupport}',[UserSupportController::class, 'destroy']);
+
+    /**** TASKS ****/
+    Route::get('/tasks',[TaskController::class, 'index']);
 });
-
-/**** AppModules ROUTE STARTS *****/
-Route::get('/app_modules', [AppModuleController::class, 'index']);
-Route::get('/app_modules/{appMudules}', [AppModuleController::class, 'show']);
-Route::post('/app_modules', [AppModuleController::class, 'store']);
-Route::post('/app_modules/{appMudules}', fn()=> abort(403, 'Action not allowed'));
-Route::delete('/app_modules/{appMudules}', [AppModuleController::class, 'destroy']);
-
-
-Route::get('/skill',[SkillsController::class, 'index']);
-Route::get('/skill/{skills}',[SkillsController::class, 'show']);
-Route::post('/skill',[SkillsController::class, 'store']);
-Route::post('/skill/{skills}',[SkillsController::class, 'update']);
-Route::delete('/skill/{skills}',[SkillsController::class, 'destroy']);
-
 
 Route::get('pincode/{id}', [PincodeController::class, 'show']);
 Route::get('pincode/fetch', [PincodeController::class, 'fetch']);
 
 
-/******JOBS ****/
-
-Route::get('/jobs',[JobController::class, 'index']);
-Route::get('/jobs/{job}',[JobController::class, 'show']);
-Route::post('/jobs',[JobController::class, 'store']);
-Route::post('/jobs/{}',[JobController::class, 'update']);
-Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
-
-
-/******PROJECT ****/
-
-Route::get('/projects',[ProjectController::class, 'index']);
-Route::get('/project/{project}',[ProjectController::class, 'show']);
-Route::post('/project',[ProjectController::class, 'store']);
-Route::post('/project/{project}',[ProjectController::class, 'update']);
-Route::delete('/project/{project}',[ProjectController::class, 'destroy']);
-
-/*** DOCUMENT TYPE */
-
-Route::get('/document-type',[DocumentTypeController::class, 'index']);
-Route::get('/document-type/{documentType}',[DocumentTypeController::class, 'show']);
-Route::post('/document-type',[DocumentTypeController::class, 'store']);
-Route::post('/document-type/{documentType}',[DocumentTypeController::class, 'update']);
-Route::delete('/document-type/{documentType}',[DocumentTypeController::class, 'destroy']);
-
-
-
-/*** USER SUPPORT */
-
-Route::get('/support',[UserSupportController::class, 'index']);
-Route::get('/support/{userSupport}',[UserSupportController::class, 'show']);
-Route::post('/support',[UserSupportController::class, 'store']);
-Route::post('/support/{userSupport}',[UserSupportController::class, 'update']);
-Route::delete('/support/{userSupport}',[UserSupportController::class, 'destroy']);
-
-Route::get('/tasks',[TaskController::class, 'index']);
