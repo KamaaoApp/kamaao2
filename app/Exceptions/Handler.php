@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
   $this->renderable(function (AuthenticationException $e, $request) {
     if ($request->is('api/*')) {
         return response()->json([
-          'status' => 'Failed',
+          'status' => 'FAILED',
           'status_code' => 401,
           'message' => 'Unauthenticated.'
         ], 401);
