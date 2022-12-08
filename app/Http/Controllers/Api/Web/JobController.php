@@ -44,7 +44,7 @@ class JobController extends Controller
             [
                 'status'=>'SUCCESS',
                 'status_code'=>200,
-                'message'=>'Company Details Inserted Successfully',
+                'message'=>'New Job Posted Successfully',
                 'data'  => ['id'=>$NewJob->id],
             ]);
     }

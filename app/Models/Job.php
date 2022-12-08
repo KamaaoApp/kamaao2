@@ -9,17 +9,20 @@ class Job extends Model
 {
 
     use HasFactory;
-    protected $fillable = ['job_title', 'sub_title','job_type','job_category','company_id',
+    protected $fillable = ['title', 'sub_title','type','category','company_id',
                             'last_date','total_openings','min_salary','max_salary','city','city_id',
-                            'state','state_id','description_video','roles_responsibility','cta1',
+                            'state','state_id',
+                            'district',
+                            'district_id',
+                            'description_video','roles_responsibility','cta1',
                             'cta1_text','cta2','cta2_text','min_education','experience_required',
-                            'skills_required','documents_required','additional_requirement', 'area' ];
+                            'skills_required','documents_required','additional_requirement', 'area', 'pincode'];
 
     protected $with = ['company', 'city'];
 
     public function company()
     {
-        return $this->belongsTo(Company::class)->select(['id', 'company_legal_name', 'company_popular_name', 'company_logo']);
+        return $this->belongsTo(Company::class)->select(['id', 'legal_name', 'popular_name', 'logo']);
     }
 
     public function city()

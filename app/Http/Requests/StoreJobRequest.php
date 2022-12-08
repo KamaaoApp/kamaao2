@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 
 class StoreJobRequest extends FormRequest
 {
@@ -54,6 +57,18 @@ class StoreJobRequest extends FormRequest
             'skills_required'   =>'required',
             'documents_required'=>'required',
             'additional_requirement'=>'nullable|string',
+            'pincode'=>'required',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'SUCCESS',
+            'status_code' => 422,
+            'meaasge' => "The given data was invalid to process with",
+            // 'errors' => ['message'=> 'Validation Error'],
+            'errors' => $validator->errors()
+        ], 422));
     }
 }
