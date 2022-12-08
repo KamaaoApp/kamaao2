@@ -57,6 +57,7 @@ class StoreJobRequest extends FormRequest
             'skills_required'   =>'required',
             'documents_required'=>'required',
             'additional_requirement'=>'nullable|string',
+            'pincode'=>'required',
         ];
     }
 

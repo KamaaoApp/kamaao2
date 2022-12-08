@@ -39,12 +39,13 @@ class JobController extends Controller
     {
         $validatedData      =   $request->validated();
         $validatedData      =   array_merge($validatedData, ['opening_left' => $validatedData['total_openings']]);
+        // dd($validatedData);
         $NewJob             =   Job::create($validatedData);
         return response()->json(
             [
                 'status'=>'SUCCESS',
                 'status_code'=>200,
-                'message'=>'Company Details Inserted Successfully',
+                'message'=>'New Job Posted Successfully',
                 'data'  => ['id'=>$NewJob->id],
             ]);
     }
