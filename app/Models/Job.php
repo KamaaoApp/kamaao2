@@ -22,7 +22,7 @@ class Job extends Model
 
     public function company()
     {
-        return $this->belongsTo(Company::class)->select(['id', 'company_legal_name', 'company_popular_name', 'company_logo']);
+        return $this->belongsTo(Company::class)->select(['id', 'legal_name', 'popular_name', 'logo']);
     }
 
     public function city()

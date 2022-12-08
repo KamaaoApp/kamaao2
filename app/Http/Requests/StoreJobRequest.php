@@ -64,11 +64,11 @@ class StoreJobRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'status' => 422,
+            'status' => 'SUCCESS',
+            'status_code' => 422,
             'meaasge' => "The given data was invalid to process with",
             // 'errors' => ['message'=> 'Validation Error'],
             'errors' => $validator->errors()
-
         ], 422));
     }
 }
