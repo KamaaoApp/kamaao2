@@ -25,14 +25,16 @@ class CompanyController extends Controller
         if(count($Company))
         {
             return response()->json([
-                'status'=>200,
+                'status'=>'SUCCESS',
+                'status_code'=>200,
                 'data'=>$Company
             ]);
         }
         else
         {
             return response()->json([
-                'status'=>404,
+                'status'=>'FAILED',
+                'status_code'=>404,
                 'message'=> "No Records Found"
             ]);
         }
@@ -77,7 +79,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return response()->json(['status'=>200,'data'=>$company]);
+        return response()->json(['status'=>'SUCCESS','status_code'=>200,'data'=>$company]);
     }
 
     
@@ -105,7 +107,8 @@ class CompanyController extends Controller
             }
             $company->update(array_filter($validatedData));
             return response()->json([
-                'status'=>200,
+                'status'=>'SUCCESS',
+                'status_code'=>200,
                 'message'=>'Company Details updated'
             ]);
     }
@@ -120,11 +123,11 @@ class CompanyController extends Controller
     { 
         if($company->delete())
         {
-            return response()->json(['status'=>200,'message'=>'Company Details Deleted']);
+            return response()->json(['status'=>'SUCCESS','status_code'=>200,'message'=>'Company Details Deleted']);
         }
         else
         {
-            return response()->json(['status'=>400,'message'=>'Something Went Wrong'],400);
+            return response()->json(['status'=>'FAILED','status_code'=>400, 'message'=>'Something Went Wrong'],400);
         }
         
     }

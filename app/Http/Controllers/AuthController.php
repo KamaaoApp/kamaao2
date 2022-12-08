@@ -26,7 +26,7 @@ class AuthController extends Controller
         {
             return response()->json([
                 'status'        =>  'FAILED',
-                'status_code'   =>  '402',
+                'status_code'   =>  '400',
                 'message'       =>  'INVALID REQUEST',
                 // 'errors'        =>  'check your rea'
             ],400);
@@ -39,19 +39,20 @@ class AuthController extends Controller
             $user->getAllPermissions();
             
             return response()->json([
-                'status'=>200,
+                'status'=>'SUCCESS',
+                'status_code'   =>  '200',
                 'data'=>
                 ['user'  =>$user,]
-                
-                
-            ])->withHeaders([
-                'Token' =>$token,
+                ])->withHeaders([
+                    'Token' =>$token,
             ]);
         }
         else
         { 
             return response()->json([
-                'status'=>401,
+                'status'=>'FAILED',
+                'status_code'   =>  '401',
+
                 'message'=>'Invalid Credentials',
                 ],401);
                 
