@@ -1707,7 +1707,7 @@ https://github.com/videojs/video.js/blob/master/src/css/video-js.less */
 	<div id="cspio-page">
 		<div id="cspio-content">
 			
-			<img id="cspio-logo" src="images/logo.png"><span style="font-size: 36px">Kamaao</span>
+			<img id="cspio-logo" src="{{URL::asset('/images/logo.png')}}"><span style="font-size: 36px">Kamaao</span>
 			    				
 			<h1 id="cspio-headline">Coming Soon</h1>			    				
 			
