@@ -64,8 +64,7 @@ class JobController extends Controller
             'message'=>'Document Type Updated'
         ]);
     }
-
-     
+    
     public function destroy(Job $job)
     {
         if($job->delete())
