@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/','admindashboard');
+Route::view('/','welcome');
 Route::get('/admin', function () {
     return view('welcome');
 });
