@@ -63,6 +63,7 @@ class JobController extends Controller
             'status_code'=>200,
             'message'=>'Document Type Updated'
         ]);
+        
     }
     
     public function destroy(Job $job)
