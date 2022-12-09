@@ -54,7 +54,7 @@ class JobController extends Controller
         return response()->json(['status'=>'SUCCESS', 'status_code'=>200,'data'=>$job]);      
     }
 
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(UpdatxeJobRequest $request, Job $job)
     {
         $validatedData      =   $request->validated();
         $job->update($validatedData);
@@ -64,7 +64,6 @@ class JobController extends Controller
             'message'=>'Document Type Updated'
         ]);
     }
-
      
     public function destroy(Job $job)
     {
