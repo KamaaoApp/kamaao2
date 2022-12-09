@@ -76,7 +76,7 @@ Route::middleware(['auth:sanctum'])->group(function ()
     Route::get('/jobs',[JobController::class, 'index']);
     Route::get('/jobs/{job}',[JobController::class, 'show']);
     Route::post('/jobs',[JobController::class, 'store']);
-    Route::post('/jobs/{}',[JobController::class, 'update']);
+    Route::post('/jobs/{job}',[JobController::class, 'update']);
     Route::delete('/jobs/category/{jobCategory}',[JobController::class, 'destroy']);
 
     /**** SKILLS  *****/
